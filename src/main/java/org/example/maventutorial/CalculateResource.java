@@ -37,8 +37,10 @@ public final class CalculateResource {
             result = left - right;
         } else if(op.equals("*")) {
             result = left * right;
-        } else {
+        } else if(op.equals("/")) {
             result = left / right;
+        } else {
+            return Response.status(400).entity("Invalid operator.").build();
         }
         
         return Response
