@@ -103,11 +103,11 @@ public class CalculateIT {
     public final void serverReturnsCorrectMultiplication() throws Exception {
         given().
             contentType("application/json").
-            body("{\"leftOperand\":4.2,\"operator\":\"*\",\"rightOperand\":1.5}").
+            body("{\"leftOperand\":4.4,\"operator\":\"*\",\"rightOperand\":2.0}").
         when().
             post("/calculate")
         .then()
-            .body("result", is(6.3f));
+            .body("result", is(8.8f));
     }
 
     @Test

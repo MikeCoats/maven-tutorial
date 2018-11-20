@@ -33,8 +33,12 @@ public final class CalculateResource {
 
         if(op.equals("+")) {
             result = left + right;
-        } else {
+        } else if(op.equals("-")) {
             result = left - right;
+        } else if(op.equals("*")) {
+            result = left * right;
+        } else {
+            result = left / right;
         }
         
         return Response
