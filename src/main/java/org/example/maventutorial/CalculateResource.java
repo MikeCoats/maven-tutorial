@@ -25,9 +25,21 @@ public final class CalculateResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postHandler(final OperationMessage operation) {
+        float left = operation.getLeftOperand();
+        float right = operation.getRightOperand();
+        String op = operation.getOperator();
+
+        float result;
+
+        if(op.equals("+")) {
+            result = left + right;
+        } else {
+            result = left - right;
+        }
+        
         return Response
                 .status(Status.OK)
-                .entity(new ResultMessage(operation.getLeftOperand() + operation.getRightOperand()))
+                .entity(new ResultMessage(result))
                 .build();
     }
 }
