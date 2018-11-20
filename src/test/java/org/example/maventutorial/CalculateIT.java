@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 
 public class CalculateIT {
     @BeforeClass
@@ -32,6 +33,15 @@ public class CalculateIT {
             get("/calculate")
         .then()
             .statusCode(200);
+    }
+
+    @Test
+    public final void serverReturnsJson() throws Exception {
+        given().
+        when().
+            get("/calculate")
+        .then()
+            .assertThat().contentType(ContentType.JSON);
     }
 
 }
