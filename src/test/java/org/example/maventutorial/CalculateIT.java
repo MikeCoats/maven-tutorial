@@ -66,4 +66,15 @@ public class CalculateIT {
             .body("result", is(5.0f));
     }
 
+    @Test
+    public final void serverReturnsAnotherCorrectResult() throws Exception {
+        given().
+            contentType("application/json").
+            body("{\"leftOperand\":3.0,\"operator\":\"+\",\"rightOperand\":5.0}").
+        when().
+            post("/calculate")
+        .then()
+            .body("result", is(8.0f));
+    }
+
 }
