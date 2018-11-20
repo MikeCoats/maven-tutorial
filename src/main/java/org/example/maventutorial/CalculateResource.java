@@ -13,6 +13,9 @@ public final class CalculateResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getHandler() {
-        return Response.status(Status.OK).entity("{}").build();
+        return Response
+                .status(Status.OK)
+                .entity(new ResultMessage(7.0f))
+                .build();
     }
 }
