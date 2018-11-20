@@ -3,6 +3,7 @@ package org.example.maventutorial;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.is;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -52,6 +53,17 @@ public class CalculateIT {
             get("/calculate")
         .then()
             .body("", hasKey("result"));
+    }
+
+    @Test
+    public final void serverReturnsCorrectResult() throws Exception {
+        given().
+            contentType("application/json").
+            body("{\"leftOperand\":2.0,\"operator\":\"+\",\"rightOperand\":3.0}").
+        when().
+            post("/calculate")
+        .then()
+            .body("result", is(5.0f));
     }
 
 }
