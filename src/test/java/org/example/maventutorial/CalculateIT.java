@@ -1,0 +1,27 @@
+package org.example.maventutorial;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.lessThan;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import io.restassured.RestAssured;
+
+public class CalculateIT {
+    @BeforeClass
+    public static void setup() {
+        RestAssured.baseURI = "http://localhost";
+        RestAssured.port = 8080;
+        RestAssured.basePath = "/maventutorial";
+    }
+
+    @Test
+    public final void serverResponds() throws Exception {
+        given().
+        when().
+            get("/calculate")
+        .then()
+            .time(lessThan(10000L));
+    }
+}
