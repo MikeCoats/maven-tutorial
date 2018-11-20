@@ -56,7 +56,7 @@ public class CalculateIT {
     }
 
     @Test
-    public final void serverReturnsCorrectResult() throws Exception {
+    public final void serverReturnsCorrectAddition() throws Exception {
         given().
             contentType("application/json").
             body("{\"leftOperand\":2.0,\"operator\":\"+\",\"rightOperand\":3.0}").
@@ -67,7 +67,7 @@ public class CalculateIT {
     }
 
     @Test
-    public final void serverReturnsAnotherCorrectResult() throws Exception {
+    public final void serverReturnsAnotherCorrectAddition() throws Exception {
         given().
             contentType("application/json").
             body("{\"leftOperand\":3.0,\"operator\":\"+\",\"rightOperand\":5.0}").
@@ -77,4 +77,25 @@ public class CalculateIT {
             .body("result", is(8.0f));
     }
 
+    @Test
+    public final void serverReturnsCorrectSubtraction() throws Exception {
+        given().
+            contentType("application/json").
+            body("{\"leftOperand\":4.0,\"operator\":\"-\",\"rightOperand\":1.0}").
+        when().
+            post("/calculate")
+        .then()
+            .body("result", is(3.0f));
+    }
+
+    @Test
+    public final void serverReturnsAnotherCorrectSubtraction() throws Exception {
+        given().
+            contentType("application/json").
+            body("{\"leftOperand\":2.0,\"operator\":\"-\",\"rightOperand\":7.0}").
+        when().
+            post("/calculate")
+        .then()
+            .body("result", is(-5.0f));
+    }
 }
