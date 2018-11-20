@@ -27,7 +27,7 @@ public final class CalculateResource {
     public Response postHandler(final OperationMessage operation) {
         return Response
                 .status(Status.OK)
-                .entity(new ResultMessage(5.0f))
+                .entity(new ResultMessage(operation.getLeftOperand() + operation.getRightOperand()))
                 .build();
     }
 }
