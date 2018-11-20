@@ -142,4 +142,15 @@ public class CalculateIT {
         .then()
             .body("result", is(1.0f));
     }
+
+    @Test
+    public final void serverReturnsErrorOnUnsupportedOperator() throws Exception {
+        given().
+            contentType("application/json").
+            body("{\"leftOperand\":3.0,\"operator\":\"^\",\"rightOperand\":2.0}").
+        when().
+            post("/calculate")
+        .then()
+            .statusCode(400);
+    }
 }
