@@ -2,6 +2,7 @@ package org.example.maventutorial;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.hasKey;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -42,6 +43,15 @@ public class CalculateIT {
             get("/calculate")
         .then()
             .assertThat().contentType(ContentType.JSON);
+    }
+
+    @Test
+    public final void serverReturnsResultObject() throws Exception {
+        given().
+        when().
+            get("/calculate")
+        .then()
+            .body("", hasKey("result"));
     }
 
 }
