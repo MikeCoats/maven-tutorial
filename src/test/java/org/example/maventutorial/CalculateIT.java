@@ -24,4 +24,14 @@ public class CalculateIT {
         .then()
             .time(lessThan(10000L));
     }
+
+    @Test
+    public final void serverReturns200Code() throws Exception {
+        given().
+        when().
+            get("/calculate")
+        .then()
+            .statusCode(200);
+    }
+
 }
