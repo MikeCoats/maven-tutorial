@@ -98,4 +98,48 @@ public class CalculateIT {
         .then()
             .body("result", is(-5.0f));
     }
+
+    @Test
+    public final void serverReturnsCorrectMultiplication() throws Exception {
+        given().
+            contentType("application/json").
+            body("{\"leftOperand\":4.2,\"operator\":\"*\",\"rightOperand\":1.5}").
+        when().
+            post("/calculate")
+        .then()
+            .body("result", is(6.3f));
+    }
+
+    @Test
+    public final void serverReturnsAnotherCorrectMultiplication() throws Exception {
+        given().
+            contentType("application/json").
+            body("{\"leftOperand\":2.3,\"operator\":\"*\",\"rightOperand\":2.3}").
+        when().
+            post("/calculate")
+        .then()
+            .body("result", is(5.29f));
+    }
+
+    @Test
+    public final void serverReturnsCorrectDivision() throws Exception {
+        given().
+            contentType("application/json").
+            body("{\"leftOperand\":6.4,\"operator\":\"/\",\"rightOperand\":2.0}").
+        when().
+            post("/calculate")
+        .then()
+            .body("result", is(3.2f));
+    }
+
+    @Test
+    public final void serverReturnsAnotherCorrectDivision() throws Exception {
+        given().
+            contentType("application/json").
+            body("{\"leftOperand\":3.0,\"operator\":\"/\",\"rightOperand\":3.0}").
+        when().
+            post("/calculate")
+        .then()
+            .body("result", is(1.0f));
+    }
 }
