@@ -1,6 +1,8 @@
 package org.example.maventutorial;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -16,6 +18,16 @@ public final class CalculateResource {
         return Response
                 .status(Status.OK)
                 .entity(new ResultMessage(7.0f))
+                .build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response postHandler(final OperationMessage operation) {
+        return Response
+                .status(Status.OK)
+                .entity(new ResultMessage(5.0f))
                 .build();
     }
 }
