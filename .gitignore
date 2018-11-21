@@ -1,0 +1,6 @@
+/target/
+
+# eclipse project settings
+/.settings/
+.project
+.classpath
