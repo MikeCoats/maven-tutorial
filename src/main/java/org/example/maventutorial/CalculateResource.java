@@ -9,18 +9,40 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+/**
+ * Respond to all rest calls under the calculate end-point.
+ */
 @Path("/calculate")
 public final class CalculateResource {
 
+    /**
+     * If we receive a bad request, this is our return code.
+     */
+    public static final int HTTP_BAD_REQUEST = 400;
+
+    /**
+     * A dummy result.
+     */
+    public static final float DUMMY_RESULT = 7.0f;
+
+    /**
+     * Handle GET operations with a successful dummy result.
+     * @return A dummy result
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getHandler() {
         return Response
                 .status(Status.OK)
-                .entity(new ResultMessage(7.0f))
+                .entity(new ResultMessage(DUMMY_RESULT))
                 .build();
     }
 
+    /**
+     * Handle a POST operation asking for some maths to be done.
+     * @param operation The mathematical calculation to perform
+     * @return The results of the calculation
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -31,18 +53,21 @@ public final class CalculateResource {
 
         float result;
 
-        if(op.equals("+")) {
+        if (op.equals("+")) {
             result = left + right;
-        } else if(op.equals("-")) {
+        } else if (op.equals("-")) {
             result = left - right;
-        } else if(op.equals("*")) {
+        } else if (op.equals("*")) {
             result = left * right;
-        } else if(op.equals("/")) {
+        } else if (op.equals("/")) {
             result = left / right;
         } else {
-            return Response.status(400).entity("Invalid operator.").build();
+            return Response
+                    .status(HTTP_BAD_REQUEST)
+                    .entity("Invalid operator.")
+                    .build();
         }
-        
+
         return Response
                 .status(Status.OK)
                 .entity(new ResultMessage(result))

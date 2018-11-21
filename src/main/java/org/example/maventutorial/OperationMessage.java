@@ -2,24 +2,51 @@ package org.example.maventutorial;
 
 import java.io.Serializable;
 
-public class OperationMessage implements Serializable {
+/**
+ * A message that represents the mathematical function to run.
+ */
+public final class OperationMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The left number in the equation.
+     */
     private float leftOperand;
+
+    /**
+     * The function in the equation.
+     */
     private String operator;
+
+    /**
+     * The right number in the equation.
+     */
     private float rightOperand;
 
+    /**
+     * Default Constructor.
+     */
     public OperationMessage() {
         this.leftOperand = 0.0f;
         this.operator = "+";
         this.rightOperand = 0.0f;
     }
 
-    public OperationMessage(float leftOperand, String operator, float rightOperand) {
-        this.leftOperand = leftOperand;
-        this.operator = operator;
-        this.rightOperand = rightOperand;
+    /**
+     * Fully Specified Constructor.
+     *
+     * @param theLeftOperand the leftOperand
+     * @param theOperator the operator
+     * @param theRightOperand the leftOperand
+     */
+    public OperationMessage(final float theLeftOperand,
+                            final String theOperator,
+                            final float theRightOperand
+    ) {
+        this.leftOperand = theLeftOperand;
+        this.operator = theOperator;
+        this.rightOperand = theRightOperand;
     }
 
     /**
@@ -30,10 +57,10 @@ public class OperationMessage implements Serializable {
     }
 
     /**
-     * @param leftOperand the leftOperand to set
+     * @param theLeftOperand the leftOperand to set
      */
-    public void setLeftOperand(float leftOperand) {
-        this.leftOperand = leftOperand;
+    public void setLeftOperand(final float theLeftOperand) {
+        this.leftOperand = theLeftOperand;
     }
 
     /**
@@ -44,10 +71,10 @@ public class OperationMessage implements Serializable {
     }
 
     /**
-     * @param operator the operator to set
+     * @param theOperator the operator to set
      */
-    public void setOperator(String operator) {
-        this.operator = operator;
+    public void setOperator(final String theOperator) {
+        this.operator = theOperator;
     }
 
     /**
@@ -58,10 +85,10 @@ public class OperationMessage implements Serializable {
     }
 
     /**
-     * @param rightOperand the rightOperand to set
+     * @param theRightOperand the rightOperand to set
      */
-    public void setRightOperand(float rightOperand) {
-        this.rightOperand = rightOperand;
+    public void setRightOperand(final float theRightOperand) {
+        this.rightOperand = theRightOperand;
     }
 
 }

@@ -2,18 +2,32 @@ package org.example.maventutorial;
 
 import java.io.Serializable;
 
-public class ResultMessage implements Serializable  {
+/**
+ * A message representing a result.
+ */
+public final class ResultMessage implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The result.
+     */
     private float result;
 
+    /**
+     * Default constructor.
+     */
     public ResultMessage() {
         this.result = 0.0f;
     }
 
-    public ResultMessage(float result) {
-        this.result = result;
+    /**
+     * Fully Specified Constructor.
+     *
+     * @param theResult the result
+     */
+    public ResultMessage(final float theResult) {
+        this.result = theResult;
     }
 
     /**
@@ -24,9 +38,9 @@ public class ResultMessage implements Serializable  {
     }
 
     /**
-     * @param result the result to set
+     * @param theResult the result to set
      */
-    public void setResult(float result) {
-        this.result = result;
+    public void setResult(final float theResult) {
+        this.result = theResult;
     }
 }
