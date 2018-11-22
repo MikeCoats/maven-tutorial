@@ -9,8 +9,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.http.HttpStatus;
-
 /**
  * Respond to all rest calls under the calculate end-point.
  */
@@ -60,7 +58,7 @@ public final class CalculateResource {
             result = left / right;
         } else {
             return Response
-                    .status(HttpStatus.SC_BAD_REQUEST)
+                    .status(Status.BAD_REQUEST)
                     .entity("Invalid operator.")
                     .build();
         }
