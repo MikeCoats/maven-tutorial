@@ -1,9 +1,11 @@
 package org.example.maventutorial;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.lessThan;
+
+import javax.ws.rs.core.Response.Status;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,14 +26,6 @@ public class CalculateIT {
      * What port is the application served on.
      */
     public static final int AS_PORT = 8080;
-    /**
-     * HTTP OK.
-     */
-    public static final int HTTP_GOOD_REQUEST = 200;
-    /**
-     * HTTP not OK.
-     */
-    public static final int HTTP_BAD_REQUEST = 400;
 
     /**
      * Standard set-up for Rest-Assured.
@@ -68,7 +62,7 @@ public class CalculateIT {
         when().
             get("/calculate")
         .then()
-            .statusCode(HTTP_GOOD_REQUEST);
+            .statusCode(Status.OK.getStatusCode());
     }
 
     /**
@@ -258,6 +252,6 @@ public class CalculateIT {
         when().
             post("/calculate")
         .then()
-            .statusCode(HTTP_BAD_REQUEST);
+            .statusCode(Status.BAD_REQUEST.getStatusCode());
     }
 }

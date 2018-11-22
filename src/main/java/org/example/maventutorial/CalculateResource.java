@@ -16,11 +16,6 @@ import javax.ws.rs.core.Response.Status;
 public final class CalculateResource {
 
     /**
-     * If we receive a bad request, this is our return code.
-     */
-    public static final int HTTP_BAD_REQUEST = 400;
-
-    /**
      * A dummy result.
      */
     public static final float DUMMY_RESULT = 7.0f;
@@ -63,7 +58,7 @@ public final class CalculateResource {
             result = left / right;
         } else {
             return Response
-                    .status(HTTP_BAD_REQUEST)
+                    .status(Status.BAD_REQUEST)
                     .entity("Invalid operator.")
                     .build();
         }
